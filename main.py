@@ -268,47 +268,64 @@ def download_video(message, url, audio=False):
 @bot.message_handler(commands=["start", "help"])
 def send_start(message):
     if message.text == "/start":
-        text = """🤖 This bot can download videos and audios from various sites.
+        text = """🇺🇸 This bot can download videos and music from over 1,500 different services and sites.
 Send the link, choose the format and get your file.
 
-🤖 Этот бот может скачивать видео и аудио из различных сервисов и сайтов.
-Отправь ссылку, выбери формат и получи свой файл.
+🇷🇺 Этот бот может скачивать видео и музыку с более чем 1500 различных сервисов и сайтов.
+Отправь ссылку, выбери формат и получите свой файл.
+
+Bot supports | Бот поддерживает:
 
 - YouTube
+- TikTok
+- SounCloud
 - YouTube Music
 - Instagram
 - Facebook
 - Twitter
-- TikTok
-- Вконтакте
-- SounCloud
+- Vkontakte
 - Deezer
-- Jamendo и много других сервисов
+- Jamendo
+- ...
 
-/help - О боте
+see the full list here | смотри весь список здесь
+-> justsave.app <-
 
-👇Отправь ссылку и получи свой файл👇
+/help - about bot | о боте
+
+👇 send me the link | отправь мне ссылку 👇
 """
     elif message.text == "/help":
-        text = """🔥 Just Save It может скачать для вас видео ролики и аудио из различных сервисов и сайтов.
-
-Бот поддерживает:
+        text = """Bot supports | Бот поддерживает:
+        
 - YouTube
+- TikTok
+- SounCloud
 - YouTube Music
 - Instagram
 - Facebook
 - Twitter
-- TikTok
-- Вконтакте
-- SounCloud
+- Vkontakte
 - Deezer
-- Jamendo и много других сервисов
+- Jamendo
+- ...
 
-Как пользоваться:
+🇺🇸 How to use:
+  1. Go to the website or service.
+  2. Select a video/audio you are interested in.
+  3. Copy the link to the video.
+  Send the link to the bot and get your file!
+
+🇷🇺 Как пользоваться:
   1. Зайдите на сайт или сервис.
   2. Выберите интересное для вас видео\аудио.
   3. Скопируйте ссылку на видео.
-  4. Отправьте нашему боту и получите ваш файл!
+  4. Отправьте ссылку боту и получите ваш файл!
+
+see the full list here | смотри весь список здесь
+-> justsave.app <-
+
+👇 send me the link | отправь мне ссылку 👇
 """
     write_to_db(message)
     bot.send_message(message.chat.id, text)
