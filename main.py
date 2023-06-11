@@ -8,7 +8,6 @@ from telebot.types import (
     CallbackQuery,
 )
 from requests.exceptions import ReadTimeout
-import json
 from urllib.parse import urlparse
 import yt_dlp
 import datetime
@@ -27,6 +26,7 @@ db_link = env["DB_LINK"]
 max_filesize = int(env["max_filesize"])
 MY_ID = int(env["MY_ID"])
 last_edited = {}
+GET_ALL_USERS_COUNT = "get_all_users_count_lskJHjf32"
 
 REKLAMA_MSG = [
     "🔥 Валютный вклад для россиян (до 12% годовых) <a href='https://crypto-fans.club'>crypto-fans.club</a>",
@@ -359,9 +359,24 @@ def download_audio_command(call: CallbackQuery):
     download_video(call.message.reply_to_message, text, True)
 
 
+def get_all_users_count(message):   
+    conn = sqlite3.connect(db_link)
+    cursor = conn.cursor()
+    count = cursor.execute(
+       """SELECT COUNT("id") FROM user"""
+    )
+    count = cursor.fetchone()
+    conn.commit()
+    conn.close()
+    message.answer(f"Всего пользователей: {count[0]}")
+
+
 @bot.message_handler(content_types=["text"])
 def download_command(message):
     write_to_db(message)
+    if GET_ALL_USERS_COUNT == message.text:
+        get_all_users_count(message)
+        return
     if not message.text:
         bot.reply_to(
             message, "Неверный текст, отправь ссылку", parse_mode="MARKDOWN"
