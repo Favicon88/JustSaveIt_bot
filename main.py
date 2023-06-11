@@ -368,7 +368,7 @@ def get_all_users_count(message):
     count = cursor.fetchone()
     conn.commit()
     conn.close()
-    message.answer(f"Всего пользователей: {count[0]}")
+    bot.reply_to(message, f"Всего пользователей: {count[0]}")
 
 
 @bot.message_handler(content_types=["text"])
